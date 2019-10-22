@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 
 namespace xplat
 {
@@ -6,7 +8,12 @@ namespace xplat
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello Brisbane!");
+            var allDrives = DriveInfo.GetDrives().Where(d => d.DriveType == DriveType.Fixed);
+            // var allDrives = DriveInfo.GetDrives();
+            foreach (var drive in allDrives)
+            {
+                Console.WriteLine($"{drive.Name}: {drive.DriveFormat} ({drive.DriveType})");
+            }
         }
     }
 }
